@@ -5,8 +5,10 @@ import { useRouter } from "next/navigation";
 import { TrendingUp } from "lucide-react";
 import { toast } from "sonner";
 
-const Auth = () => {
-  const [isLogin, setIsLogin] = useState(true);
+type AuthProps = { defaultMode?: "login" | "signup" };
+
+const Auth = ({ defaultMode = "login" }: AuthProps) => {
+  const [isLogin, setIsLogin] = useState(defaultMode === "login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
