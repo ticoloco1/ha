@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { useSettings } from "@/hooks/useSettings";
 import { useAuth } from "@/hooks/useAuth";
@@ -5,7 +7,6 @@ import AvatarMenu from "@/components/AvatarMenu";
 import WalletButton from "@/components/WalletButton";
 import NotificationBell from "@/components/NotificationBell";
 import VerificationModal from "@/components/VerificationModal";
-import { TrendingUp, HelpCircle, ShoppingBag, Briefcase, Crown, Globe, BadgeCheck, Link2, Tag, LayoutGrid, Car, Home, FileText, Megaphone, Package } from "lucide-react";
 import { useState } from "react";
 
 const Header = () => {
@@ -18,77 +19,50 @@ const Header = () => {
 
   return (
     <>
-      <header className="h-14 flex items-center justify-between px-6 sticky top-0 z-50 bg-primary border-b-2 border-accent">
-        <Link href="/" className="flex items-center gap-2.5">
-          {logoUrl ? (
-            <img src={logoUrl} alt={platformName} className="h-8 w-auto object-contain" />
-          ) : (
-            <TrendingUp className="w-6 h-6 text-primary-foreground" />
-          )}
-          <div className="flex flex-col">
-            <span className="text-primary-foreground font-black text-lg tracking-tight font-mono leading-none">
-              {platformName}
-            </span>
-            <span className="text-accent text-[8px] font-mono uppercase tracking-[0.2em] leading-none font-bold">
-              Videos • Mini Sites • Jobs
-            </span>
+      <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="container flex h-14 items-center justify-between px-4">
+          <Link href="/" className="flex items-center gap-2 font-semibold">
+            {logoUrl ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={logoUrl} alt={platformName} width={32} height={32} className="rounded-lg object-contain" />
+            ) : (
+              <span className="text-lg font-bold">{platformName}</span>
+            )}
+            <span className="hidden sm:inline-block text-muted-foreground text-sm">Videos • Mini Sites • Jobs</span>
+          </Link>
+          <nav className="hidden md:flex items-center gap-6">
+            <Link href="/servicos" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Serviços</Link>
+            <Link href="/how-it-works" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">How It Works</Link>
+            <Link href="/marketplace" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Marketplace</Link>
+            <Link href="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Home</Link>
+            <Link href="/directory" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Diretório</Link>
+            <Link href="/professionais" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Profissões</Link>
+            <Link href="/domains" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Domains</Link>
+            <Link href="/slugs" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Slugs</Link>
+            <Link href="/jobs" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Jobs</Link>
+            <Link href="/cv" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">CV</Link>
+            <Link href="/classificados" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Classificados</Link>
+            <Link href="/carros" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Carros</Link>
+            <Link href="/imoveis" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Imóveis</Link>
+            <Link href="/mini-site" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Mini Site</Link>
+          </nav>
+          <div className="flex items-center gap-2">
+            {user && (
+              <button
+                type="button"
+                onClick={() => setShowVerification(true)}
+                className="hidden md:flex items-center gap-1 text-primary text-xs font-extrabold transition-colors hover:underline"
+              >
+                Verificação
+              </button>
+            )}
+            <NotificationBell />
+            <WalletButton />
+            <AvatarMenu />
           </div>
-        </Link>
-
-        <nav className="flex items-center gap-3">
-          <Link href="/servicos" className="hidden md:flex items-center gap-1 text-primary-foreground/80 hover:text-primary-foreground text-xs font-extrabold transition-colors">
-            <Package className="w-3.5 h-3.5" /> Serviços
-          </Link>
-          <Link href="/how-it-works" className="hidden md:flex items-center gap-1 text-primary-foreground/80 hover:text-primary-foreground text-xs font-extrabold transition-colors">
-            <HelpCircle className="w-3.5 h-3.5" /> How It Works
-          </Link>
-          <Link href="/marketplace" className="hidden md:flex items-center gap-1 text-primary-foreground/80 hover:text-primary-foreground text-xs font-extrabold transition-colors">
-            <ShoppingBag className="w-3.5 h-3.5" /> Marketplace
-          </Link>
-          <Link href="/" className="hidden md:flex items-center gap-1 text-primary-foreground/80 hover:text-primary-foreground text-xs font-extrabold transition-colors">
-            Home
-          </Link>
-          <Link href="/directory" className="hidden md:flex items-center gap-1 text-primary-foreground/80 hover:text-primary-foreground text-xs font-extrabold transition-colors">
-            <LayoutGrid className="w-3.5 h-3.5" /> Diretório
-          </Link>
-          <Link href="/professionais" className="hidden md:flex items-center gap-1 text-primary-foreground/80 hover:text-primary-foreground text-xs font-extrabold transition-colors">
-            <Tag className="w-3.5 h-3.5" /> Profissões
-          </Link>
-          <Link href="/domains" className="hidden lg:flex items-center gap-1 text-primary-foreground/80 hover:text-primary-foreground text-xs font-extrabold transition-colors">
-            <Globe className="w-3.5 h-3.5" /> Domains
-          </Link>
-          <Link href="/slugs" className="hidden lg:flex items-center gap-1 text-primary-foreground/80 hover:text-primary-foreground text-xs font-extrabold transition-colors">
-            <Link2 className="w-3.5 h-3.5" /> Slugs
-          </Link>
-          <Link href="/careers" className="hidden sm:flex items-center gap-1 text-primary-foreground/80 hover:text-primary-foreground text-xs font-extrabold transition-colors">
-            <Briefcase className="w-3.5 h-3.5" /> Jobs
-          </Link>
-          <Link href="/cv" className="hidden sm:flex items-center gap-1 text-primary-foreground/80 hover:text-primary-foreground text-xs font-extrabold transition-colors">
-            <FileText className="w-3.5 h-3.5" /> CV
-          </Link>
-          <Link href="/classificados" className="hidden md:flex items-center gap-1 text-primary-foreground/80 hover:text-primary-foreground text-xs font-extrabold transition-colors">
-            <Megaphone className="w-3.5 h-3.5" /> Classificados
-          </Link>
-          <Link href="/carros" className="hidden md:flex items-center gap-1 text-primary-foreground/80 hover:text-primary-foreground text-xs font-extrabold transition-colors">
-            <Car className="w-3.5 h-3.5" /> Carros
-          </Link>
-          <Link href="/imoveis" className="hidden md:flex items-center gap-1 text-primary-foreground/80 hover:text-primary-foreground text-xs font-extrabold transition-colors">
-            <Home className="w-3.5 h-3.5" /> Imóveis
-          </Link>
-          <Link href="/site/edit" className="hidden lg:flex items-center gap-1 text-primary-foreground/80 hover:text-primary-foreground text-xs font-extrabold transition-colors">
-            <Crown className="w-3.5 h-3.5" /> Mini Site
-          </Link>
-          {user && (
-            <button onClick={() => setShowVerification(true)} className="hidden md:flex items-center gap-1 text-primary-foreground/80 hover:text-primary-foreground text-xs font-extrabold transition-colors">
-              <BadgeCheck className="w-3.5 h-3.5" />
-            </button>
-          )}
-          <WalletButton />
-          <NotificationBell />
-          <AvatarMenu />
-        </nav>
+        </div>
       </header>
-      {user && <VerificationModal open={showVerification} onClose={() => setShowVerification(false)} />}
+      <VerificationModal open={showVerification} onClose={() => setShowVerification(false)} />
     </>
   );
 };

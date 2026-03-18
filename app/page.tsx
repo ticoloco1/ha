@@ -11,9 +11,5 @@ export default async function Home() {
     .eq("id", 1)
     .single();
 
-  return (
-    <HomePage
-      initialSettings={settings ?? undefined}
-    />
-  );
+  return <HomePage initialSettings={settings} />;
 }
