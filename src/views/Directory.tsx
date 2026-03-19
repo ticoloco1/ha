@@ -228,7 +228,7 @@ const Directory = () => {
                     onClick={() => setBoostType("homepage")}
                     className={`p-3 rounded-lg border text-center transition-all ${boostType === "homepage" ? "border-accent bg-accent/10" : "border-border"}`}
                   >
-                    <p className="text-xl font-black text-accent">${BOOST_HOMEPAGE_PRICE.toLocaleString("en-US")}</p>
+                    <p className="text-xl font-black text-accent">$1,000</p>
                     <p className="text-[10px] text-muted-foreground">{BOOST_HOMEPAGE_DAYS} dias</p>
                     <p className="text-[9px] text-muted-foreground">Topo da Home</p>
                   </button>
@@ -243,7 +243,7 @@ const Directory = () => {
               disabled={boostCheckoutLoading}
               className="bg-accent text-accent-foreground"
             >
-              {boostCheckoutLoading ? "Abrindo pagamento…" : `Pagar e destacar ($${boostType === "homepage" ? BOOST_HOMEPAGE_PRICE.toLocaleString("en-US") : BOOST_PRICE})`}
+              {boostCheckoutLoading ? "Abrindo pagamento…" : `Pagar e destacar ($${boostType === "homepage" ? "1,000" : BOOST_PRICE})`}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
@@ -279,9 +279,9 @@ const Directory = () => {
 
         {/* Pricing banner */}
         <div className="bg-accent/5 border border-accent/10 rounded-xl p-4 mb-6 text-center">
-          <p className="text-xs text-muted-foreground">
+          <p className="text-xs text-muted-foreground" suppressHydrationWarning>
             <Zap className="w-3 h-3 inline text-accent" /> Destacar: <strong className="text-foreground">${BOOST_PRICE}</strong> por 24h no diretório •
-            <strong className="text-foreground" suppressHydrationWarning> ${BOOST_HOMEPAGE_PRICE.toLocaleString("en-US")}</strong> = Topo da Home por {BOOST_HOMEPAGE_DAYS} dias
+            <strong className="text-foreground"> $1,000</strong> = Topo da Home por {BOOST_HOMEPAGE_DAYS} dias
           </p>
         </div>
 
