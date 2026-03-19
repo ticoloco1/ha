@@ -220,7 +220,7 @@ const Directory = () => {
                     onClick={() => setBoostType("standard")}
                     className={`p-3 rounded-lg border text-center transition-all ${boostType === "standard" ? "border-accent bg-accent/10" : "border-border"}`}
                   >
-                    <p className="text-xl font-black text-accent">${BOOST_PRICE}</p>
+                    <p className="text-xl font-black text-accent">$1.50</p>
                     <p className="text-[10px] text-muted-foreground">24 horas</p>
                     <p className="text-[9px] text-muted-foreground">Destaque no diretório</p>
                   </button>
@@ -228,8 +228,8 @@ const Directory = () => {
                     onClick={() => setBoostType("homepage")}
                     className={`p-3 rounded-lg border text-center transition-all ${boostType === "homepage" ? "border-accent bg-accent/10" : "border-border"}`}
                   >
-                    <p className="text-xl font-black text-accent" suppressHydrationWarning>$1,000</p>
-                    <p className="text-[10px] text-muted-foreground">{BOOST_HOMEPAGE_DAYS} dias</p>
+                    <p className="text-xl font-black text-accent">$1,000</p>
+                    <p className="text-[10px] text-muted-foreground">7 dias</p>
                     <p className="text-[9px] text-muted-foreground">Topo da Home</p>
                   </button>
                 </div>
@@ -243,7 +243,7 @@ const Directory = () => {
               disabled={boostCheckoutLoading}
               className="bg-accent text-accent-foreground"
             >
-              {boostCheckoutLoading ? "Abrindo pagamento…" : `Pagar e destacar ($${boostType === "homepage" ? "1,000" : BOOST_PRICE})`}
+              {boostCheckoutLoading ? "Abrindo pagamento…" : `Pagar e destacar ($${boostType === "homepage" ? "1,000" : "1.50"})`}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
@@ -279,9 +279,9 @@ const Directory = () => {
 
         {/* Pricing banner */}
         <div className="bg-accent/5 border border-accent/10 rounded-xl p-4 mb-6 text-center" suppressHydrationWarning>
-          <p className="text-xs text-muted-foreground">
-            <Zap className="w-3 h-3 inline text-accent" /> Destacar: <strong className="text-foreground">${BOOST_PRICE}</strong> por 24h no diretório •
-            <strong className="text-foreground" suppressHydrationWarning> $1,000</strong> = Topo da Home por {BOOST_HOMEPAGE_DAYS} dias
+          <p className="text-xs text-muted-foreground" suppressHydrationWarning>
+            <Zap className="w-3 h-3 inline text-accent" /> Destacar: <strong className="text-foreground">$1.50</strong> por 24h no diretório •
+            <strong className="text-foreground"> $1,000</strong> = Topo da Home por 7 dias
           </p>
         </div>
 
