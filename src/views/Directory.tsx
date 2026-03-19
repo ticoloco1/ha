@@ -281,7 +281,7 @@ const Directory = () => {
         <div className="bg-accent/5 border border-accent/10 rounded-xl p-4 mb-6 text-center">
           <p className="text-xs text-muted-foreground">
             <Zap className="w-3 h-3 inline text-accent" /> Destacar: <strong className="text-foreground">${BOOST_PRICE}</strong> por 24h no diretório •
-            <strong className="text-foreground"> ${BOOST_HOMEPAGE_PRICE.toLocaleString("en-US")}</strong> = Topo da Home por {BOOST_HOMEPAGE_DAYS} dias
+            <strong className="text-foreground" suppressHydrationWarning> ${BOOST_HOMEPAGE_PRICE.toLocaleString("en-US")}</strong> = Topo da Home por {BOOST_HOMEPAGE_DAYS} dias
           </p>
         </div>
 
