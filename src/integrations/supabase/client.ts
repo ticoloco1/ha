@@ -6,6 +6,8 @@ import type { Database } from './types';
 const SUPABASE_URL = (typeof process !== "undefined" && process.env?.NEXT_PUBLIC_SUPABASE_URL) || (typeof import.meta !== "undefined" && (import.meta as any).env?.VITE_SUPABASE_URL) || "";
 const SUPABASE_PUBLISHABLE_KEY = (typeof process !== "undefined" && process.env?.NEXT_PUBLIC_SUPABASE_ANON_KEY) || (typeof import.meta !== "undefined" && (import.meta as any).env?.VITE_SUPABASE_PUBLISHABLE_KEY) || (typeof process !== "undefined" && process.env?.VITE_SUPABASE_PUBLISHABLE_KEY) || "";
 
+export const isSupabaseConfigured = Boolean(SUPABASE_URL && SUPABASE_PUBLISHABLE_KEY);
+
 // Import the supabase client like this:
 // import { supabase } from "@/integrations/supabase/client";
 
@@ -18,10 +20,45 @@ const safeStorage = typeof window !== "undefined" && window.localStorage
       removeItem: () => {},
     };
 
-export const supabase = createClient<Database>(SUPABASE_URL!, SUPABASE_PUBLISHABLE_KEY!, {
-  auth: {
-    storage: safeStorage,
-    persistSession: true,
-    autoRefreshToken: true,
+const notConfigured = { message: "Supabase não configurado. Configure NEXT_PUBLIC_SUPABASE_URL e NEXT_PUBLIC_SUPABASE_ANON_KEY no Vercel." };
+
+function createSupabaseClient() {
+  if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
+    const chain = (result: any) => ({
+      eq: () => chain(result),
+      single: () => Promise.resolve({ data: null, error: notConfigured }),
+      maybeSingle: () => Promise.resolve({ data: null, error: null }),
+      order: () => chain(result),
+      limit: () => Promise.resolve({ data: result ?? [], error: null }),
+      then: (resolve: (r: any) => void) => resolve({ data: null, error: notConfigured }),
+    });
+    return {
+      auth: {
+        getSession: () => Promise.resolve({ data: { session: null }, error: null }),
+        onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => {} } } }),
+        signOut: () => Promise.resolve({ error: null }),
+        signInWithPassword: () => Promise.resolve({ data: null, error: notConfigured }),
+        signUp: () => Promise.resolve({ data: null, error: notConfigured }),
+        signInWithOAuth: () => Promise.resolve({ data: null, error: notConfigured }),
+      },
+      from: () => ({
+        select: () => chain(null),
+        insert: () => ({ select: () => Promise.resolve({ data: null, error: notConfigured }) }),
+        update: () => ({ eq: () => Promise.resolve({ data: null, error: notConfigured }) }),
+        delete: () => ({ eq: () => Promise.resolve({ error: null }) }),
+        upsert: () => Promise.resolve({ data: null, error: notConfigured }),
+      }),
+      storage: { from: () => ({ upload: () => Promise.resolve({ data: null, error: notConfigured }), remove: () => Promise.resolve({ error: null }) }) },
+      rpc: () => Promise.resolve({ data: null, error: notConfigured }),
+    } as any;
   }
-});
+  return createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
+    auth: {
+      storage: safeStorage,
+      persistSession: true,
+      autoRefreshToken: true,
+    },
+  });
+}
+
+export const supabase = createSupabaseClient();
