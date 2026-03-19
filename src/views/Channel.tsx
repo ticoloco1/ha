@@ -3,7 +3,7 @@ import SEO from "@/components/SEO";
 import Header from "@/components/Header";
 import { useAuth } from "@/hooks/useAuth";
 import { useCreatorVideos, usePublishVideo, useIssueShares } from "@/hooks/useCreatorVideos";
-import { Navigate, Link } from "react-router-dom";
+import { Navigate, Link } from "@/lib/react-router-shim";
 import { useSettings } from "@/hooks/useSettings";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";

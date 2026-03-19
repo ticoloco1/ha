@@ -281,7 +281,7 @@ const Directory = () => {
         <div className="bg-accent/5 border border-accent/10 rounded-xl p-4 mb-6 text-center" suppressHydrationWarning>
           <p className="text-xs text-muted-foreground" suppressHydrationWarning>
             <Zap className="w-3 h-3 inline text-accent" /> Destacar: <strong className="text-foreground">$1.50</strong> por 24h no diretório •
-            <strong className="text-foreground"> $1,000</strong> = Topo da Home por 7 dias
+            <strong className="text-foreground" suppressHydrationWarning> $1,000</strong> = Topo da Home por 7 dias
           </p>
         </div>
 

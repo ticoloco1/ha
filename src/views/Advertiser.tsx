@@ -2,7 +2,7 @@ import { useState } from "react";
 import SEO from "@/components/SEO";
 import Header from "@/components/Header";
 import { useAuth } from "@/hooks/useAuth";
-import { Navigate } from "react-router-dom";
+import { Navigate } from "@/lib/react-router-shim";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { Image, Plus, Trash2 } from "lucide-react";

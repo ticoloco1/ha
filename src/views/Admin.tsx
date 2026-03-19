@@ -25,7 +25,7 @@ import {
   Palette, Activity, Users, TrendingUp, Video, Megaphone, Edit3, Gift, Grid3X3, Globe,
   Zap, Trophy, Wallet, Flame, Brain, Power, Megaphone as MegaphoneIcon, Image, Key, Crown, ChevronDown
 } from "lucide-react";
-import { Navigate, Link } from "react-router-dom";
+import { Navigate, Link } from "@/lib/react-router-shim";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";

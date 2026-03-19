@@ -3,7 +3,7 @@ import SEO from "@/components/SEO";
 import Header from "@/components/Header";
 import { useAuth } from "@/hooks/useAuth";
 import { useDividendPayouts, useWallet, useHoldings, useWithdrawals } from "@/hooks/useDividends";
-import { Navigate, Link } from "react-router-dom";
+import { Navigate, Link } from "@/lib/react-router-shim";
 import { Wallet, TrendingUp, Shield, ArrowLeft, FileText, BarChart3, ArrowDownToLine, RefreshCw, ArrowUpFromLine } from "lucide-react";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from "recharts";
 import { supabase } from "@/integrations/supabase/client";

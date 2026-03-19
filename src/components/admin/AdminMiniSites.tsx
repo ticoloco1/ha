@@ -3,7 +3,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Globe, Trash2, Eye, EyeOff, Search, Ban, CheckCircle, DollarSign } from "lucide-react";
 import { toast } from "sonner";
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/react-router-shim";
 import { Input } from "@/components/ui/input";
 
 const AdminMiniSites = () => {

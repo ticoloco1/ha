@@ -1,6 +1,6 @@
 import { useState } from "react";
 import SEO from "@/components/SEO";
-import { useNavigate, Navigate } from "react-router-dom";
+import { useNavigate, Navigate } from "@/lib/react-router-shim";
 import Header from "@/components/Header";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";

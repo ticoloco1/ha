@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/react-router-shim";
 import { categories } from "@/data/mockDatabase";
 import { useSettings } from "@/hooks/useSettings";
 import type { Video } from "@/hooks/useVideos";

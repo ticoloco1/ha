@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/react-router-shim";
 import { Crown, Star, Sparkles, Globe } from "lucide-react";
 
 const tiers = [

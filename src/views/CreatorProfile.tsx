@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link } from "@/lib/react-router-shim";
 import SEO from "@/components/SEO";
 import { useMemo } from "react";
 import Header from "@/components/Header";

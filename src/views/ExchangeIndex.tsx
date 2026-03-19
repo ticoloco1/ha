@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import SEO from "@/components/SEO";
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/react-router-shim";
 import Header from "@/components/Header";
 import { useVideos } from "@/hooks/useVideos";
 import { useIndexSettings, generateMockIndexHistory } from "@/hooks/useExchange";

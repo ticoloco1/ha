@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/react-router-shim";
 import { Star, TrendingUp } from "lucide-react";
 import type { Video } from "@/hooks/useVideos";
 
