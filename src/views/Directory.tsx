@@ -228,7 +228,7 @@ const Directory = () => {
                     onClick={() => setBoostType("homepage")}
                     className={`p-3 rounded-lg border text-center transition-all ${boostType === "homepage" ? "border-accent bg-accent/10" : "border-border"}`}
                   >
-                    <p className="text-xl font-black text-accent">$1,000</p>
+                    <p className="text-xl font-black text-accent" suppressHydrationWarning>$1,000</p>
                     <p className="text-[10px] text-muted-foreground">{BOOST_HOMEPAGE_DAYS} dias</p>
                     <p className="text-[9px] text-muted-foreground">Topo da Home</p>
                   </button>

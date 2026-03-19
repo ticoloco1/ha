@@ -23,6 +23,11 @@ export default function SiteEditError({
         <p className="text-sm text-muted-foreground">
           Algo deu errado ao carregar a página. Verifique se você está logado e se as variáveis de ambiente (Supabase, etc.) estão configuradas.
         </p>
+        <details className="text-left text-xs bg-muted p-3 rounded-lg">
+          <summary className="cursor-pointer text-muted-foreground">Detalhes do erro</summary>
+          <pre className="mt-2 whitespace-pre-wrap break-all text-destructive">{error?.message || "Erro desconhecido"}</pre>
+          {error?.stack && <pre className="mt-1 whitespace-pre-wrap break-all text-muted-foreground/70 text-[10px]">{error.stack}</pre>}
+        </details>
         <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
           <button
             type="button"

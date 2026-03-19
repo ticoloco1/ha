@@ -17,7 +17,8 @@ const AdBanner = ({ size, className = "" }: Props) => {
   const slot = slotMap[size];
   const { data: ads } = useAdsBySlot(slot);
   const seen = useRef(false);
-  const ad = ads && ads.length > 0 ? ads[Math.floor(Math.random() * ads.length)] : null;
+  // Use first ad to avoid hydration mismatch (Math.random differs server/client)
+  const ad = ads && ads.length > 0 ? ads[0] : null;
 
   useEffect(() => {
     if (ad && !seen.current) seen.current = true;
